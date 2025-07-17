@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DEPLOY_USER = "ubuntu"
-        DEPLOY_HOST = "13.201.103.121"
+        DEPLOY_HOST = "13.203.103.120"
         DEPLOY_PATH = "/home/ubuntu/devops_assignment_5/backend"
     }
 
@@ -21,7 +21,7 @@ pipeline {
                       scp -r * ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}
 
                       ssh ${DEPLOY_USER}@${DEPLOY_HOST}
-                      cd ${DEPLOY_PATH} &&
+                      cd /home/ubuntu/devops_assignment_5/backend &&
                       /home/ubuntu/devops_assignment_5/backend/venv/bin/pip install -r requirements.txt &&
                       sudo systemctl restart flask
 
