@@ -17,15 +17,15 @@ pipeline {
         stage('Deploy to Backend Server') {
             steps {
                 sshagent(credentials: ['deploy-key']) {
-                   sh '''
-                      scp -r * ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}
+                   sh """
+                      scp -r * \$DEPLOY_USER@\$DEPLOY_HOST:\$DEPLOY_PATH
 
-                      ssh ${DEPLOY_USER}@${DEPLOY_HOST}'
+                      ssh \$DEPLOY_USER@\$DEPLOY_HOST '
                       cd /home/ubuntu/devops_assignment_5/backend &&
                       /home/ubuntu/devops_assignment_5/backend/venv/bin/pip install -r requirements.txt &&
                       sudo systemctl restart flask'
 
-                   '''
+                   """
                 }
             }
         }
